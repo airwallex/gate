@@ -74,7 +74,7 @@ class GithubProviderTokenServices implements SpinnakerProviderTokenServices {
         restTemplate.getOAuth2ClientContext().setAccessToken(token)
       }
       List<Map<String, String>> organizations = restTemplate
-        .getForEntity(organizationsUrl, List.class).getBody()
+        .getForEntity("https://api.github.com/user/orgs", List.class).getBody()
       return githubOrganizationMember(organization, organizations)
     }
     catch (Exception ex) {
