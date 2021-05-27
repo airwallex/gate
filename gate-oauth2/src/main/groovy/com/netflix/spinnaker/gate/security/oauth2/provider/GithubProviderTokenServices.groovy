@@ -82,8 +82,8 @@ class GithubProviderTokenServices implements SpinnakerProviderTokenServices {
 
   boolean hasAllProviderRequirements(String token, Map details) {
     boolean hasRequirements = true
-    if (requirements.organization != null && details.containsKey("organizations_url")) {
-      boolean orgMatch = checkOrganization(token, details['organizations_url'], requirements.organization)
+    if (requirements.organization != null) {
+      boolean orgMatch = checkOrganization(token, "https://api.github.com/user/orgs", requirements.organization)
       if (!orgMatch) {
         log.debug("User does not include required organization {}", requirements.organization)
         hasRequirements = false
